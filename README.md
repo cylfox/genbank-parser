@@ -12,7 +12,7 @@ Species: <species> | <start position>:<end position>(<strand>) | Product: <produ
 ## csv_filter.py
 ### Description
 Given an annotation file (in the format described before) and a GECKO-MGV (https://pistacho.ac.uma.es/) csv file format:
-```
+```csv
 All by-Identity Ungapped Fragments (Hits based approach)
 [Abr.98/Apr.2010/Dec.2011 -- <ortrelles@uma.es>
 SeqX filename        : Unknown
@@ -32,3 +32,13 @@ Frag,3060985,155084884,3063802,155082067,f,0,2818,9368,2580,83.11,0.92,0,0
 ...
 ```
 It extracts all fragments and checks the overlapping (80%) between each fragment and each annotation, then it generates a new GECKO-MGV csv file. 
+
+---
+## models.py
+### Description
+Some models for better use of the libraries.
+### Models
+```python
+class Annotation:
+class Fragment:
+```
