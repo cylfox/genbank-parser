@@ -39,22 +39,37 @@ for genbank_file_name in listdir(annotations_path):
                         sin_repetir += 1
 
                         try:
+                            gene = feature.qualifiers['gene'][0]
+                            #print(gene)
+                        except KeyError:
+                            gene = 'Unknown'
+                            #print('!!!!!!!!!!!!!!!falta el gene')
+
+                        try:
+                            gene_synonym = feature.qualifiers['gene_synonym'][0]
+                            #print('Sinonimos: ' + gene)
+                        except KeyError:
+                            gene_synonym = 'Unknown'
+                            #print('Sin sinonimos')
+
+                        try:
                             product = feature.qualifiers['product'][0]
                         except KeyError:
                             product = 'Unknown'
-                            print('!!!!!!!!!!!!!!!falta el producto')
+                            #print('!!!!!!!!!!!!!!!falta el producto')
 
                         try:
                             note = feature.qualifiers['note'][0].replace(
                                                  'Derived by automated computational analysis '
                                                  'using gene prediction method:', 'By')
                         except KeyError:
-                            note = 'No notes'
-                            print('falta la nota')
+                            note = 'None'
+                            #print('falta la nota')
 
                         try:
-                            # print '\n NO ES NULO!! \n'
-                            # print('productito: ' + product)
+                            print('x1: %s x2: %s s: %s | gene: %s synonym: %s product: %s notes: %s' %
+                                  (feature.location.start, feature.location.end, feature.location.strand, gene,
+                                   gene_synonym, product, note))
                             ann = Annotation(species_name,
                                              int(feature.location.start),
                                              int(feature.location.end),
